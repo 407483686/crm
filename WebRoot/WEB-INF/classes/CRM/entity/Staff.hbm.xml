@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class table="t_staff" name="CRM.entity.Staff" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" type="string">
+			<column name="name" sql-type="char(20)"></column>
+		</property>
+		<property name="number" column="number"/>
+		<property name="gender" column="gender"/>
+		<property name="type" type="string">
+			<column name="type" sql-type="char(4)"></column>
+		</property>
+		<property name="id_card" type="string">
+			<column name="id_card" sql-type="char(18)"></column>
+		</property>
+		<property name="post" column="post"></property>
+		<property name="tel" type="string">
+			<column name="tel" sql-type="char(11)"></column>
+		</property>
+		<property name="nation" type="string">
+			<column name="nation" sql-type="char(5)"></column>
+		</property>
+		<property name="marital_status" type="string">
+			<column name="marital_status" sql-type="char(2)"></column>
+		</property>
+		<property name="entry_status" type="string">
+			<column name="entry_status" sql-type="char(2)"></column>
+		</property>
+		<property name="entry_date" column="entry_date" type="timestamp"/>
+		<property name="dimission_date" column="dimission_date" type="timestamp"/>
+		<property name="politics_status" type="string">
+			<column name="politics_status" sql-type="char(2)"></column>
+		</property>
+		<property name="education" type="string">
+			<column name="education" sql-type="char(2)"></column>
+		</property>
+		<property name="create_time" column="create_time" type="timestamp"/>
+		<one-to-one name="extend" class="CRM.entity.Extend" cascade="all" lazy="false" ></one-to-one>
+		<many-to-one name="user"  column="user_id" cascade="all" lazy="false"></many-to-one>
+		<one-to-one name="authGroupAccess" cascade="all" lazy="false" class="CRM.entity.AuthGroupAccess"></one-to-one>
+	</class>
+</hibernate-mapping>

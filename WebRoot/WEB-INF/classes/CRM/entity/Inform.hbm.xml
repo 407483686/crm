@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 1 配置类和表对应 class标签 name属性：实体类全路径 table属性：数据库表名称 -->
+	<class table="t_inform" name="CRM.entity.Inform" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="title" type="string">
+			<column name="title" sql-type="varchar(50)"></column>
+		</property>
+		<property name="details" type="string">
+			<column name="details" sql-type="text"></column>
+		</property>
+		<property name="staff_id" column="staff_id"></property>
+		<property name="staff_name" type="string">
+			<column name="staff_name" sql-type="varchar(20)"></column>
+		</property>
+		<property name="create_time" column="create_time" type="timestamp"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class table="t_product_extend" name="CRM.entity.ProductExtend" lazy="false">
+		<id name="product_id" column="product_id">
+			<generator class="foreign">
+				<param name="property">product</param>
+			</generator>
+		</id>
+		
+		<property name="details" column="details" type="text"/>
+		
+		<one-to-one name="product" class="CRM.entity.Product" constrained="true" lazy="false"></one-to-one>
+	</class>
+</hibernate-mapping>

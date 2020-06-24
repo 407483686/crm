@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class table="t_extend" name="CRM.entity.Extend" lazy="false">
+		<id name="staff_id" column="staff_id">
+			<generator class="foreign">
+				<param name="property">staff</param>
+			</generator>
+		</id>
+		
+		<property name="intro" column="intro"/>
+		<property name="major" column="major"/>
+		<property name="heath" column="heath"/>
+		<property name="residence" column="residence"/>
+		<property name="graduation_time" column="graduation_time" type="timestamp"/>
+		<property name="registered_permanent_residence" column="registered_permanent_residence"/>
+		<property name="school" column="school"/>
+		<property name="details" column="details" type="text"/>
+		
+		<one-to-one name="staff" class="CRM.entity.Staff" constrained="true" lazy="false"></one-to-one>
+	</class>
+</hibernate-mapping>

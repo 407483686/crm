@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="demo1" extends="struts-default" namespace="/">
+		<!-- class属性里面不写action全路径了，因为写，action对象创建两次
+			写spring配置的action的bean的id值 -->
+		<action name="menu_*" class="menuAction" method="{1}">
+		</action>
+		<action name="post_*" class="postAction" method="{1}">
+		</action>
+		<action name="user_*" class="userAction" method="{1}">
+		</action>
+		<action name="staff_*" class="staffAction" method="{1}">
+		</action>
+		<action name="product_*" class="productAction" method="{1}">
+		</action>
+		<action name="inlib_*" class="inlibAction" method="{1}">
+		</action>
+		<action name="client_*" class="clientAction" method="{1}">
+		</action>
+		<action name="documentary_*" class="documentaryAction" method="{1}">
+		</action>
+		<action name="order_*" class="orderAction" method="{1}">
+		</action>
+		<action name="outlib_*" class="outlibAction" method="{1}">
+		</action>
+		<action name="receipt_*" class="receiptAction" method="{1}">
+		</action>
+		<action name="work_*" class="workAction" method="{1}">
+		</action>
+		<action name="inform_*" class="informAction" method="{1}">
+		</action>
+		<action name="letter_*" class="letterAction" method="{1}">
+		</action>
+		<action name="log_*" class="logAction" method="{1}">
+		</action>
+		<action name="authGroup_*" class="authGroupAction" method="{1}">
+		</action>						
+	</package>
+</struts>
+
+
+

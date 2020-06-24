@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class table="t_product" name="CRM.entity.Product" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="sn" type="string">
+			<column name="sn" sql-type="char(5)"></column>
+		</property>
+		<property name="name" type="string">
+			<column name="name" sql-type="char(20)"></column>
+		</property>
+		<property name="type" type="string">
+			<column name="type" sql-type="char(10)"></column>
+		</property>
+		<property name="pro_price" type="big_decimal">
+			<column name="pro_price" sql-type="decimal(10,2)"></column>
+		</property>
+		<property name="sell_price" type="big_decimal">
+			<column name="sell_price" sql-type="decimal(10,2)"></column>
+		</property>
+		<property name="unit" type="string">
+			<column name="unit" sql-type="char(5)"></column>
+		</property>
+		<property name="inventory" column="inventory"></property>
+		<property name="inventory_in" column="inventory_in"></property>
+		<property name="inventory_out" column="inventory_out"></property>
+		<property name="inventory_alarm" column="inventory_alarm"></property>
+		<property name="create_time" column="create_time" type="timestamp"></property>
+		<one-to-one name="productExtend" class="CRM.entity.ProductExtend" cascade="all" lazy="false" ></one-to-one>
+	</class>
+</hibernate-mapping>

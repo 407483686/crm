@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 1 配置类和表对应 class标签 name属性：实体类全路径 table属性：数据库表名称 -->
+	<class table="t_user" name="CRM.entity.User" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="accounts" column="accounts"/>
+		<property name="password" column="password"/>
+		<property name="last_login_time" column="last_login_time"/>
+		<property name="last_login_ip" column="last_login_ip"/>
+		<property name="login_count" column="login_count"/>
+		<property name="state" column="state"/>
+		<property name="create_time" column="create_time"/>
+		<many-to-one name="staff"  column="staff_id" cascade="save-update" unique="true" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>

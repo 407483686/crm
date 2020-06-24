@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 1 配置类和表对应 class标签 name属性：实体类全路径 table属性：数据库表名称 -->
+	<class table="t_documentary" name="CRM.entity.Documentary" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="sn" type="string">
+			<column name="sn" sql-type="char(14)"></column>
+		</property>
+		<property name="title" type="string">
+			<column name="title" sql-type="char(30)"></column>
+		</property>
+		<property name="company" type="string">
+			<column name="company" sql-type="char(30)"></column>
+		</property>
+		<property name="way" type="string">
+			<column name="way" sql-type="char(10)"></column>
+		</property>
+		<property name="evolve" type="string">
+			<column name="evolve" sql-type="char(10)"></column>
+		</property>
+		<property name="staff_name" type="string">
+			<column name="staff_name" sql-type="char(20)"></column>
+		</property>
+		<property name="remark" type="string">
+			<column name="remark" sql-type="char(20)"></column>
+		</property>
+		<property name="enter" type="string">
+			<column name="enter" sql-type="char(20)"></column>
+		</property>
+		<property name="create_time" column="create_time" type="timestamp"></property>
+	</class>
+</hibernate-mapping>

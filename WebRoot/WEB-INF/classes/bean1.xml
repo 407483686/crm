@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 配置c3p0连接池 -->
+ 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 注入属性值 -->
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql:///crm"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="123"></property>
+	</bean>
+	
+	<!-- sessionFactory创建交给spring管理 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- 因为在hibernate核心配置文件中，没有数据库配置，数据库配置在spring里面配置，注入dataSource -->
+		<property name="dataSource" ref="dataSource"></property>
+		
+		<!-- 指定使用hibernate核心配置文件 -->
+		<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+	
+	<!-- 第一步 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 第二步 开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 配置action的对象 -->
+	<bean id="menuAction" class="CRM.action.MenuAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="menuService" ref="menuService"></property>
+	</bean>
+	<bean id="postAction" class="CRM.action.PostAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="postService" ref="postService"></property>
+	</bean>
+	<bean id="userAction" class="CRM.action.UserAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="staffAction" class="CRM.action.StaffAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="staffService" ref="staffService"></property>
+	</bean>
+	<bean id="productAction" class="CRM.action.ProductAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="productService" ref="productService"></property>
+	</bean>
+	<bean id="inlibAction" class="CRM.action.InlibAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="inlibService" ref="inlibService"></property>
+	</bean>
+	<bean id="clientAction" class="CRM.action.ClientAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="clientService" ref="clientService"></property>
+	</bean>
+	<bean id="documentaryAction" class="CRM.action.DocumentaryAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="documentaryService" ref="documentaryService"></property>
+	</bean>
+	<bean id="orderAction" class="CRM.action.OrderAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="orderService" ref="orderService"></property>
+	</bean>
+	<bean id="outlibAction" class="CRM.action.OutlibAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="outlibService" ref="outlibService"></property>
+	</bean>
+	<bean id="receiptAction" class="CRM.action.ReceiptAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="receiptService" ref="receiptService"></property>
+	</bean>
+	<bean id="workAction" class="CRM.action.WorkAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="workService" ref="workService"></property>
+	</bean>
+	<bean id="informAction" class="CRM.action.InformAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="informService" ref="informService"></property>
+	</bean>
+	<bean id="letterAction" class="CRM.action.LetterAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="letterService" ref="letterService"></property>
+	</bean>
+	<bean id="logAction" class="CRM.action.LogAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="logService" ref="logService"></property>
+	</bean>
+	<bean id="authGroupAction" class="CRM.action.AuthGroupAction" scope="prototype">
+		<!-- 注入service -->
+		<property name="authGroupService" ref="authGroupService"></property>
+	</bean>
+	
+	
+	<!-- 创建service对象 -->
+	<bean id="menuService" class="CRM.service.impl.MenuServiceImpl">
+		<property name="menuDao" ref="menuDao"></property>
+		<property name="authGroupAccessDao" ref="authGroupAccessDao"></property>
+		<property name="authGroupDao" ref="authGroupDao"></property>
+	</bean>
+	<bean id="postService" class="CRM.service.impl.PostServiceImpl">
+		<property name="postDao" ref="postDao"></property>
+	</bean>
+	<bean id="userService" class="CRM.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+		<property name="staffDao" ref="staffDao"></property>
+	</bean>
+	<bean id="staffService" class="CRM.service.impl.StaffServiceImpl">
+		<property name="staffDao" ref="staffDao"></property>
+	</bean>
+	<bean id="productService" class="CRM.service.impl.ProductServiceImpl">
+		<property name="productDao" ref="productDao"></property>
+	</bean>
+	<bean id="inlibService" class="CRM.service.impl.InlibServiceImpl">
+		<property name="inlibDao" ref="inlibDao"></property>
+		<property name="productDao" ref="productDao"></property>
+	</bean>
+	<bean id="clientService" class="CRM.service.impl.ClientServiceImpl">
+		<property name="clientDao" ref="clientDao"></property>
+	</bean>
+	<bean id="documentaryService" class="CRM.service.impl.DocumentaryServiceImpl">
+		<property name="documentaryDao" ref="documentaryDao"></property>
+	</bean>
+	<bean id="orderService" class="CRM.service.impl.OrderServiceImpl">
+		<property name="orderDao" ref="orderDao"></property>
+		<property name="documentaryDao" ref="documentaryDao"></property>
+		<property name="outlibDao" ref="outlibDao"></property>
+		<property name="productDao" ref="productDao"></property>
+	</bean>
+	<bean id="outlibService" class="CRM.service.impl.OutlibServiceImpl">
+		<property name="outlibDao" ref="outlibDao"></property>
+	</bean>
+	<bean id="receiptService" class="CRM.service.impl.ReceiptServiceImpl">
+		<property name="receiptDao" ref="receiptDao"></property>
+		<property name="outlibDao" ref="outlibDao"></property>
+		<property name="orderDao" ref="orderDao"></property>
+	</bean>
+	<bean id="workService" class="CRM.service.impl.WorkServiceImpl">
+		<property name="workDao" ref="workDao"></property>
+	</bean>
+	<bean id="informService" class="CRM.service.impl.InformServiceImpl">
+		<property name="informDao" ref="informDao"></property>
+	</bean>
+	<bean id="letterService" class="CRM.service.impl.LetterServiceImpl">
+		<property name="letterDao" ref="letterDao"></property>
+	</bean>
+	<bean id="logService" class="CRM.service.impl.LogServiceImpl">
+		<property name="logDao" ref="logDao"></property>
+	</bean>
+	<bean id="authGroupService" class="CRM.service.impl.AuthGroupServiceImpl">
+		<property name="authGroupDao" ref="authGroupDao"></property>
+	</bean>
+	
+	
+	<!-- 创建dao层对象 -->
+	<bean id="menuDao" class="CRM.dao.impl.MenuDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="postDao" class="CRM.dao.impl.PostDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="userDao" class="CRM.dao.impl.UserDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="staffDao" class="CRM.dao.impl.StaffDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="productDao" class="CRM.dao.impl.ProductDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="inlibDao" class="CRM.dao.impl.InlibDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="clientDao" class="CRM.dao.impl.ClientDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="documentaryDao" class="CRM.dao.impl.DocumentaryDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="orderDao" class="CRM.dao.impl.OrderDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="outlibDao" class="CRM.dao.impl.OutlibDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="receiptDao" class="CRM.dao.impl.ReceiptDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="workDao" class="CRM.dao.impl.WorkDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="informDao" class="CRM.dao.impl.InformDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="letterDao" class="CRM.dao.impl.LetterDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="logDao" class="CRM.dao.impl.LogDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="authGroupAccessDao" class="CRM.dao.impl.AuthGroupAccessDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="authGroupDao" class="CRM.dao.impl.AuthGroupDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	
+	
+	<!-- 创建hibernateTemplate对象 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<!-- 解决只读权限问题 -->
+		<property name="checkWriteOperations" value="false"/>
+	</bean>
+	
+	<bean id="logAdvice" class="CRM.tool.LogAdvice">
+		<property name="logDao" ref="logDao"></property>
+	</bean>
+	
+	<!-- 配置日志aop -->
+	<aop:config>
+		<aop:aspect ref="logAdvice">
+			<!-- 工作计划 -->
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.WorkServiceImpl.addWork(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.WorkServiceImpl.addWorkStage(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.WorkServiceImpl.finish(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.WorkServiceImpl.removeWork(..))"/>
+			
+			<!-- 通知管理 -->
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.InformServiceImpl.addInform(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.InformServiceImpl.editInform(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.InformServiceImpl.removeInform(..))"/>
+		
+			<!-- 私信 收发 -->
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.LetterServiceImpl.addLetter(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.LetterServiceImpl.removeLetter(..))"/>
+		
+			<!-- 客户信息 -->
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.ClientServiceImpl.addClient(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.ClientServiceImpl.editClient(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.ClientServiceImpl.removeClient(..))"/>
+		
+			<!-- 跟单记录 -->
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.DocumentaryServiceImpl.addDocumentary(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.DocumentaryServiceImpl.editDocumentary(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.DocumentaryServiceImpl.removeDocumentary(..))"/>
+		
+			<!-- 销售订单 -->
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.OrderServiceImpl.addOrder(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.OrderServiceImpl.updateOrder(..))"/>
+			
+			<!-- 产品信息 -->
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.ProductServiceImpl.addProduct(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.ProductServiceImpl.editProduct(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.ProductServiceImpl.removeProduct(..))"/>
+			
+			<!-- 入库记录 -->
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.InlibServiceImpl.addInlib(..))"/>
+		
+			<!-- 出库记录 -->
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.OutlibServiceImpl.deliver(..))"/>
+		
+			<!-- 收款记录 -->
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.ReceiptServiceImpl.addReceipt(..))"/>
+		
+			<!-- 登录账号 -->
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.UserServiceImpl.addUser(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.UserServiceImpl.editUser(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.UserServiceImpl.editUserState(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.UserServiceImpl.editUserPassword(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.UserServiceImpl.editUserStaffNameAndUserId(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.UserServiceImpl.removeUsersByIds(..))"/>
+		
+			<!-- 员工档案 -->
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.StaffServiceImpl.addStaff(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(void CRM.service.impl.StaffServiceImpl.editStaff(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.StaffServiceImpl.removeStaff(..))"/>
+			
+			
+			<!-- 职位部门 -->
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.PostServiceImpl.addPost(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.PostServiceImpl.editPost(..))"/>
+			<aop:after-returning method="addLog" pointcut="execution(* CRM.service.impl.PostServiceImpl.removePostByIds(..))"/>
+			
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

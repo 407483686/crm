@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 1 配置类和表对应 class标签 name属性：实体类全路径 table属性：数据库表名称 -->
+	<class table="t_client" name="CRM.entity.Client" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="company" type="string">
+			<column name="company" sql-type="char(30)"></column>
+		</property>
+		<property name="name" type="string">
+			<column name="name" sql-type="char(20)"></column>
+		</property>
+		<property name="tel" type="string">
+			<column name="tel" sql-type="char(11)"></column>
+		</property>
+		<property name="source" type="string">
+			<column name="source" sql-type="char(20)"></column>
+		</property>
+		<property name="enter" type="string">
+			<column name="enter" sql-type="char(20)"></column>
+		</property>
+		<property name="create_time" column="create_time" type="timestamp"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,205 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI",
+		"Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
+	height: 100% !important;
+}
+
+a:focus {
+	outline: none;
+}
+
+.layout-north {
+	background: #E0ECFF;
+	height: 75px;
+	overflow: hidden;
+}
+
+.layout-north .font {
+	height: 75px;
+	width: 400px;
+	float: left;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 70px;
+	padding-left: 20px
+}
+
+.layout-north .info {
+	height: 75px;
+	width: 400px;
+	line-height: 70px;
+	text-align: right;
+	padding: 0 20px 0 0;
+	float: right;
+}
+
+.layout-west {
+	width: 180px;
+}
+
+.layout-center {
+	overflow: hidden;
+}
+
+.layout-south {
+	height: 30px;
+	text-align: center;
+	padding: 10px 0 0 0;
+}
+
+.tree-node-selected {
+	background: #E0ECFF;
+	border-radius: 4px;
+}
+
+.tree-node-hover {
+	border-radius: 4px;
+}
+
+.datagrid-row-over {
+	background: #F4F4F4 !important;
+}
+
+.datagrid-row-selected {
+	background: #E0ECFF !important;
+}
+
+.panel-title {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.dialog-button .l-btn-large .l-btn-text {
+	font-size: 14px;
+	padding: 0 10px 0 0;
+	height: 35px;
+	line-height: 35px;
+	color: #666;
+	margin-left: 32px !important;
+}
+
+.dialog-button .l-btn-small .l-btn-text {
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.textbox-text {
+	background-color: #fff;
+}
+
+.tooltip-content {
+	font-size: 14px !important;
+	color: #333;
+}
+
+.form-label {
+	padding: 5px 0;
+	font-size: 14px;
+	color: #666;
+}
+
+.form-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px auto;
+}
+
+.form-table tr:hover {
+	background-color: #f3f3f3;
+}
+
+.form-table>tbody>tr>td {
+	padding: 5px 0;
+}
+
+.form-table td.label {
+	min-width: 100px;
+	text-align: right;
+	font-size: 14px;
+	color: #666;
+}
+
+.form-table td.input {
+	width: 290px;
+	text-align: left;
+	font-size: 14px;
+	color: #666;
+}
+
+.messager-body {
+	color: #666;
+	font-size: 14px;
+}
+
+.tool-opt {
+	margin: 0 0 5px 0;
+}
+
+.tool-search {
+	padding: 0 0 0 7px;
+}
+
+。combobox-item,.combo input {
+	cursor: pointer;
+}
+
+.form-table .link {
+	font-size: 14px;
+	color: #06f;
+	position: relative;
+	top: 2px;
+	left: 5px;
+	cursor: pointer;
+}
+
+.form-table .textarea {
+	width: 91%;
+	height: 150px;
+	border-radius: 5px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	resize: none;
+	padding: 10px;
+}
+
+.more {
+	display: none;
+	padding: 5px 0 5px 66px;
+}
+
+.details-table {
+	width: 98%;
+	border-collapse: collapse;
+	margin: 20px auto;
+}
+
+.details-table tr:nth-child(2n) {
+	background-color: #fafafa;
+}
+
+.details-table tr:hover {
+	background-color: #eee;
+}
+
+.details-table td {
+	padding: 8px 0;
+	border: 1px solid #ccc;
+}
+
+.details-table td.label {
+	min-width: 100px;
+	text-align: right;
+	font-size: 14px;
+	color: #666;
+}
+
+.details-table td.content {
+	padding: 0 0 0 5px;
+	width: 290px;
+	text-align: left;
+	font-size: 14px;
+	color: #666;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 1 配置类和表对应 class标签 name属性：实体类全路径 table属性：数据库表名称 -->
+	<class table="t_receipt" name="CRM.entity.Receipt" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="title" type="string">
+			<column name="title" sql-type="char(30)"></column>
+		</property>
+		<property name="order_sn" type="string">
+			<column name="order_sn" sql-type="char(12)"></column>
+		</property>
+		<property name="cost" type="big_decimal">
+			<column name="cost" sql-type="decimal(10,2)"></column>
+		</property>
+		<property name="enter" type="string">
+			<column name="enter" sql-type="char(20)"></column>
+		</property>
+		<property name="remark" type="string">
+			<column name="remark" sql-type="char(20)"></column>
+		</property>
+		<property name="create_time" column="create_time" type="timestamp"></property>
+	</class>
+</hibernate-mapping>

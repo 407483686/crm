@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 1 配置类和表对应 class标签 name属性：实体类全路径 table属性：数据库表名称 -->
+	<class table="t_work" name="CRM.entity.Work" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="title" type="string">
+			<column name="title" sql-type="char(20)"></column>
+		</property>
+		<property name="type" type="string">
+			<column name="type" sql-type="char(5)"></column>
+		</property>
+		<property name="stage" type="string">
+			<column name="stage" sql-type="char(20)"></column>
+		</property>
+		<property name="state" type="string">
+			<column name="state" sql-type="char(10)"></column>
+		</property>
+		<property name="state_date" column="state_date" type="date"></property>
+		<property name="end_date" column="end_date" type="date"></property>
+		<property name="staff_id" column="staff_id"/>
+		<property name="staff_name" type="string">
+			<column name="staff_name" sql-type="char(20)"></column>
+		</property>
+		<property name="enter" type="string">
+			<column name="enter" sql-type="char(20)"></column>
+		</property>
+		<property name="enter_id" column="enter_id"/>
+		<property name="create_time" column="create_time" type="timestamp"></property>
+		 <!-- 一对多的关系使用set集合映射 -->
+        <set name="workStages" cascade="all" lazy="false">
+            <!-- 一对多的建表要有一个外键来建立他们的关系
+            	虽然外键在一的一方，但是hibernate的策略是：默认双向维护外键，即在一和多两方都要配置外键
+             -->
+            <key column="work_id" />
+            <!-- set表示所有的工作阶段，因此这里还要写类的全路径 -->
+            <one-to-many class="CRM.entity.WorkStage" />
+        </set>
+	</class>
+</hibernate-mapping>

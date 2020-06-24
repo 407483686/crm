@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 1 配置类和表对应 class标签 name属性：实体类全路径 table属性：数据库表名称 -->
+	<class table="t_auth_group_access" name="CRM.entity.AuthGroupAccess" lazy="false">
+		<id name="sid" column="sid">
+			<generator class="foreign">
+				<param name="property">staff</param>
+			</generator>
+		</id>
+		<property name="groupId" column="groupId"></property>
+		<one-to-one name="staff" constrained="true" class="CRM.entity.Staff" lazy="false"></one-to-one>
+	</class>
+</hibernate-mapping>

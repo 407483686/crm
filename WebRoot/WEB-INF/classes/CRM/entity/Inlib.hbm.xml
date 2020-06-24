@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- 1 配置类和表对应 class标签 name属性：实体类全路径 table属性：数据库表名称 -->
+	<class table="t_inlib" name="CRM.entity.Inlib" lazy="false">
+		<id name="id" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="number" column="number"/>
+		<property name="staff_name" type="string">
+			<column name="staff_name" sql-type="char(20)"></column>
+		</property>
+		<property name="mode" type="string">
+			<column name="mode" sql-type="char(2)"></column>
+		</property>
+		<property name="mode_explain" type="string">
+			<column name="mode_explain" sql-type="char(20)"></column>
+		</property>
+		<property name="enter" type="string">
+			<column name="enter" sql-type="char(20)"></column>
+		</property>
+		<property name="create_time" column="create_time" type="timestamp"></property>
+		<many-to-one name="product" column="product_id" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>
